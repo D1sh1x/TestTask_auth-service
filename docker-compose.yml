@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  auth-service:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_PASSWORD=0000
+      - JWT_SECRET_KEY=ANDREYAVAKIMOV
+      - WEBHOOK_URL=http://webhook-service:8081/webhook
+    depends_on:
+      - db
+      - webhook-service
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=0000
+      - POSTGRES_DB=auth
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./migrations:/docker-entrypoint-initdb.d
+
+volumes:
+  postgres_data: 

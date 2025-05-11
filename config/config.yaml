@@ -1,0 +1,13 @@
+env: dev
+http_server:
+  port: 8080
+storage:
+  host: localhost
+  database: auth
+  port: 5432
+  ssl: disable
+jwt:
+  access_token_ttl: 1h
+  refresh_token_ttl: 720h
+webhook:
+  url: http://webhook-service:8081/webhook
