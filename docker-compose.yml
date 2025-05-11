@@ -8,10 +8,8 @@ services:
     environment:
       - DB_PASSWORD=0000
       - JWT_SECRET_KEY=ANDREYAVAKIMOV
-      - WEBHOOK_URL=http://webhook-service:8081/webhook
     depends_on:
       - db
-      - webhook-service
 
   db:
     image: postgres:15-alpine
